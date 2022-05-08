@@ -1,4 +1,4 @@
-package dataStructure.src.dsArraySelf;
+package dataStructure.src.dsarrayself;
 import java.lang.*;
 
 public class Main {
