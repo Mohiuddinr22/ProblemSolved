@@ -1,4 +1,5 @@
 package dataStructure.src.ArraysClass;
+import javax.swing.*;
 import java.lang.*;
 public class Custom_Array {
     //variables
@@ -9,6 +10,7 @@ public class Custom_Array {
     float items4[];
     long items5[];
     int count;
+    int order;
 
     //Constructor
     public Custom_Array(String type, int arraySize){
@@ -31,41 +33,47 @@ public class Custom_Array {
 
     //Print method for all types
     public void print(){
-        for(int i=0; i<count; i++) {
-            if (items != null)
-                System.out.print(items[i]);
-            else
-                break;
+        if(items != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items[i]+", ");
+            }
+            System.out.print(items[count-1]+"]");
         }
-        for(int i=0; i<count; i++) {
-            if (items1 != null)
-                System.out.print(items1[i]);
-            else
-                break;
+        if(items1 != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items1[i]+", ");
+            }
+            System.out.print(items1[count-1]+"]");
         }
-        for(int i=0; i<count; i++) {
-            if (items2 != null)
-                System.out.print(items2[i]);
-            else
-                break;
+        if(items2 != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items2[i]+", ");
+            }
+            System.out.print(items2[count-1]+"]");
         }
-        for(int i=0; i<count; i++) {
-            if (items3 != null)
-                System.out.print(items3[i]);
-            else
-                break;
+        if(items3 != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items3[i]+", ");
+            }
+            System.out.print(items3[count-1]+"]");
         }
-        for(int i=0; i<count; i++) {
-            if (items4 != null)
-                System.out.print(items4[i]);
-            else
-                break;
+        if(items4 != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items4[i]+", ");
+            }
+            System.out.print(items4[count-1]+"]");
         }
-        for(int i=0; i<count; i++) {
-            if (items5 != null)
-                System.out.print(items5[i]);
-            else
-                break;
+        if(items5 != null){
+            System.out.print("[");
+            for(int i=0; i<count-1; i++){
+                System.out.print(items5[i]+", ");
+            }
+            System.out.print(items5[count-1]+"]");
         }
     }
 
@@ -255,5 +263,58 @@ public class Custom_Array {
     }
     public boolean contains(long item){
         return indexOf(item) != -1;
+    }
+
+    //reversing the array
+    public void reverse(){
+        int j = 1;
+        if(items != null){
+            String[] newReversedArray = new String[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items[count-j];
+                j++;
+            }
+            items = newReversedArray;
+        }
+        if(items1 != null){
+            int[] newReversedArray = new int[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items1[count-j];
+                j++;
+            }
+            items1 = newReversedArray;
+        }
+        if(items2 != null){
+            char[] newReversedArray = new char[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items2[count-j];
+                j++;
+            }
+            items2 = newReversedArray;
+        }
+        if(items3 != null){
+            double[] newReversedArray = new double[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items3[count-j];
+                j++;
+            }
+            items3 = newReversedArray;
+        }
+        if(items4 != null){
+            float[] newReversedArray = new float[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items4[count-j];
+                j++;
+            }
+            items4 = newReversedArray;
+        }
+        if(items5 != null){
+            long[] newReversedArray = new long[count];
+            for(int i=0; i<count; i++){
+                newReversedArray[i] = items5[count-j];
+                j++;
+            }
+            items5 = newReversedArray;
+        }
     }
 }

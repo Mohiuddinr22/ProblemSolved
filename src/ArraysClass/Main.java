@@ -3,20 +3,14 @@ import java.lang.*;
 
 public class Main {
     public static void main(String[]args){
-        Custom_Array newCharArray = new Custom_Array("Character",10);
-        newCharArray.insert('a');
-        newCharArray.insert('b');
-        newCharArray.insert('c');
-        newCharArray.insert('d');
-        newCharArray.insert('e');
-        newCharArray.insert('f');
-        newCharArray.insert('g');
-        newCharArray.insert('h');
-        newCharArray.insert('i');
-        newCharArray.insert('j');
-        newCharArray.removeAt(4);
-        System.out.println(newCharArray.indexOf('m'));
-        System.out.println(newCharArray.contains('e'));
-        newCharArray.print();
+        Custom_Array newStringArr = new Custom_Array("String", 5);
+        newStringArr.insert("a");
+        newStringArr.insert("b");
+        newStringArr.insert("c");
+        newStringArr.insert("d");
+        newStringArr.insert("e");
+        newStringArr.reverse();
+
+        newStringArr.print();
     }
 }
