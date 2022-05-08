@@ -257,5 +257,4 @@ public class Custom_Array {
     public boolean contains(long item){
         return indexOf(item) != -1;
     }
-
 }
