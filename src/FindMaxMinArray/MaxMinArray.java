@@ -1,4 +1,5 @@
 package dataStructure.src.FindMaxMinArray;
+import java.lang.*;
 
 public class MaxMinArray {
     int max;
