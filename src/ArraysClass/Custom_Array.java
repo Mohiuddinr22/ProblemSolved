@@ -1,6 +1,5 @@
 package dataStructure.src.ArraysClass;
 import java.lang.*;
-
 public class Custom_Array {
     //variables
     String items[];
