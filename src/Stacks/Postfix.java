@@ -50,6 +50,38 @@ public class Postfix {
         }
         return result;
     }
+    
+    public static int evaluatePostfix(String expression){
+        Stack<Integer> stack = new Stack<>();
+
+        for(int i=0; i<expression.length(); i++){
+            char c = expression.charAt(i);
+
+            if(Character.isDigit(c))
+                stack.push(c - '0');
+
+            else{
+                int value1 = stack.pop();
+                int value2 = stack.pop();
+
+                switch (c){
+                    case'+':
+                        stack.push(value1+value2);
+                        break;
+                    case'-':
+                        stack.push(value2-value1);
+                        break;
+                    case'*':
+                        stack.push(value1*value2);
+                        break;
+                    case'/':
+                        stack.push(value2/value1);
+                        break;
+                }
+            }
+        }
+        return stack.pop();
+    }
 
     public static void main(String[] args) {
         String expression = "1+2*(3-4)-(4+1+9-7)*9/3";
