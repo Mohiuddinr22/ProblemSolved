@@ -1,5 +1,3 @@
-package dataStructure.src.Stacks;
-
 import java.util.Stack;
 
 public class Postfix {
