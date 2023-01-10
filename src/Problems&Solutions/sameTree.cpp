@@ -1,3 +1,24 @@
+/*
+Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+
+Examples:
+
+Input:             1                    1
+                 /   \                /   \
+               2      3             2      3
+             /                    /
+           4                    4
+
+Output: Both trees are identical
+
+Input:             1                    1
+                 /   \                /   \
+                2     3              5     3
+                     /              /
+                    4              4
+
+Output: Trees are not identical
+*/
 #include <iostream>
 using namespace std;
 
