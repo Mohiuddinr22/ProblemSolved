@@ -2,6 +2,12 @@
 #include <cmath>
 using namespace std;
 
+/*You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once.
+
+Return the single element that appears only once.
+
+Your solution must run in O(log n) time and O(1) space.*/
+
 void SelectionSort(int *array, int size)
 {
     int i, j, k;
@@ -45,10 +51,19 @@ int FindSingleElement(int *array, int index, int size)
     FindSingleElement(array, index, size);
 }
 
+int FindSingleElement2(int *array, int size)
+{
+    for (int i = 0; i < size; i += 2)
+    {
+        if (array[i] != array[i + 1])
+            return array[i];
+    }
+}
+
 int main()
 {
-    int array[9] = {1, 1, 2, 2, 5, 6, 6, 7, 7};
+    int array[9] = {1, 2, 2, 5, 5, 6, 6, 7, 7};
     // SelectionSort(array, 9);
     DisplayArray(array, 9);
-    cout << "The single element is : " << FindSingleElement(array, 1, 9) << endl;
+    cout << "The single element is : " << FindSingleElement2(array, 9) << endl;
 }
