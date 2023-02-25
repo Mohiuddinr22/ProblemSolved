@@ -5,11 +5,13 @@ You want to maximize your profit by choosing a single day to buy one stock and c
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.*/
 
 #include <iostream>
-#include <array>
+#include <bits/stdc++.h>
+#include <vector>
 using namespace std;
 
-bool IfDescending(int *array, int size)
+bool IfDescending(vector<int> &array)
 {
+    int size = array.size();
     int i = 0;
     while (i < size - 1)
     {
@@ -24,7 +26,7 @@ bool IfDescending(int *array, int size)
     return true;
 }
 
-int FindLargest(int *array, int start, int end)
+int FindLargest(vector<int> &array, int start, int end)
 {
     int largestNum = array[start];
     while (start < end)
@@ -38,20 +40,39 @@ int FindLargest(int *array, int start, int end)
     return largestNum;
 }
 
-int MaxProfit(int *prices, int size)
+int MaxProfit(vector<int> &prices)
 {
-    if (IfDescending(prices, size))
+    int size = prices.size();
+    if (IfDescending(prices))
         return 0;
-    int maxProfit[size];
+    vector<int> maxProfit;
     for (int i = 0; i < size; i++)
     {
-        maxProfit[i] = FindLargest(prices, i + 1, size) - prices[i];
+        maxProfit.push_back(FindLargest(prices, i + 1, size) - prices[i]);
     }
     return FindLargest(maxProfit, 0, size - 1);
 }
 
+/*int MaxProfit(vector<int> &prices)
+{
+    int least = INT32_MAX, maxProfit = 0, profit = 0;
+    for (int i = 0; i < prices.size(); i++)
+    {
+        if (prices[i] < least)
+            least = prices[i];
+        profit = prices[i] - least;
+        if (maxProfit < profit)
+            maxProfit = profit;
+    }
+    return maxProfit;
+}*/
+
 int main()
 {
-    int array[8] = {7, 1, 5, 3, 6, 4, 1, 6};
-    cout << MaxProfit(array, 8);
+    vector<int> prices;
+    prices.push_back(1);
+    prices.push_back(2);
+
+    cout << MaxProfit(prices);
+    return 0;
 }
