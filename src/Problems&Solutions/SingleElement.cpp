@@ -62,8 +62,8 @@ int FindSingleElement2(int *array, int size)
 
 int main()
 {
-    int array[9] = {1, 2, 2, 5, 5, 6, 6, 7, 7};
+    int array[13] = {1, 1, 2, 2, 2, 2, 2, 5, 5, 6, 7, 7, 7};
     // SelectionSort(array, 9);
-    DisplayArray(array, 9);
-    cout << "The single element is : " << FindSingleElement2(array, 9) << endl;
+    DisplayArray(array, 13);
+    cout << "The single element is : " << FindSingleElement(array, 0, 13) << endl;
 }

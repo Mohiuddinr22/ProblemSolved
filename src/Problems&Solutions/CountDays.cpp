@@ -26,9 +26,8 @@ int CountDays(int *array, int size, int cap)
 
 int main()
 {
-    int size = 10;
-    int array[size] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    //                 0  1  2  3  4  5  6  7  8   9  10
-    int capacity = 20;
+    int size = 5;
+    int array[size] = {1, 2, 3, 1, 1};
+    int capacity = 3;
     cout << CountDays(array, size, capacity) << endl;
 }
