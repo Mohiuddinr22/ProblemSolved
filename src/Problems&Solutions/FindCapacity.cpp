@@ -7,61 +7,73 @@ Return the least weight capacity of the ship that will result in all the package
 // 1 2 3 4 5 6 7 8 9 10
 
 #include <iostream>
-#include <cmath>
+#include <vector>
 using namespace std;
 
-int CountDays(int *array, int size, int cap)
+class Solution
 {
-    int index, days = 0, sum = 0;
-    for (index = 0; index < size; index++)
+private:
+    int findLargest(vector<int> &array)
     {
-        sum += array[index];
-        if (sum >= cap || (sum + array[index + 1]) > cap)
+        int largestNum = array[0], size = array.size();
+        for (int i = 1; i < size; i++)
         {
-            sum = 0;
-            days++;
+            if (array.at(i) > largestNum)
+            {
+                largestNum = array.at(i);
+            }
         }
+        return largestNum;
     }
-    return days;
-}
 
-int LargestElement(int *array, int size)
-{
-    int i, j, largestNum;
-    bool x = true;
-    for (i = 0; i < size; i++)
+    int countDays(vector<int> &weights, int capacity)
     {
-        largestNum = array[i];
-        for (j = 0; j < size; j++)
+        int i, size = weights.size(), sum = 0, days = 0;
+        for (i = 0; i < size - 1; i++)
         {
-            if (array[j] > largestNum)
-                largestNum = array[j];
+            sum += weights.at(i);
+            if (sum + weights[i + 1] > capacity)
+            {
+                sum = 0;
+                days++;
+            }
         }
+        return days + 1;
     }
-    return largestNum;
-}
 
-int FindCapacity(int *weights, int daysLimit, int size)
-{
-    int i, sum = 0, capacity, days;
-    for (i = 0; i < size; i++)
+public:
+    int shipWithinDays(vector<int> &weights, int days)
     {
-        sum += weights[i];
-    }
-    capacity = LargestElement(weights, size);
-    while (days != daysLimit && capacity <= sum)
-    {
-        if (sum / daysLimit <= 2)
+        int i, size = weights.size(), sum = 0, capacity = findLargest(weights), day = 0;
+        for (i = 0; i < size; i++)
         {
-            return capacity;
+            sum += weights.at(i);
         }
-        days = CountDays(weights, size, capacity++);
+
+        while (day != days && capacity <= sum)
+        {
+            int newCapacity = (capacity + sum) / 2;
+            if (countDays(weights, newCapacity) <= days)
+            {
+                sum = newCapacity - 1;
+            }
+            else
+            {
+                capacity = newCapacity + 1;
+            }
+            day = countDays(weights, capacity);
+        }
+        return capacity;
     }
-    return capacity - 1;
-}
+};
 
 int main()
 {
-    int weights[5] = {1, 2, 3, 1, 1}; // 8/4=2;3
-    cout << FindCapacity(weights, 4, 5) << endl;
+    vector<int> w1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    vector<int> w2 = {3, 2, 2, 4, 1, 4};
+    vector<int> w3 = {1, 2, 3, 1, 1};
+    Solution s1 = Solution();
+    cout << s1.shipWithinDays(w1, 5) << endl;
+    cout << s1.shipWithinDays(w2, 3) << endl;
+    cout << s1.shipWithinDays(w3, 4) << endl;
 }
