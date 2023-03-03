@@ -54,7 +54,7 @@ public:
 
 int main()
 {
-    vector<int> nums = {9, 5, 3, 1, 7, 6, 8, 2, 4, 6};
+    vector<int> nums = {5, 7, 8, 9, 11, 12, 8, 9, 1, 1, 2, 8, 2, 7, 2, 6, 63, 345, 3456, 753, 54, 234, 634, 54, 213, 123};
     Solution s = Solution();
     s.sortArrayByParity(nums);
     for (int i : nums)
