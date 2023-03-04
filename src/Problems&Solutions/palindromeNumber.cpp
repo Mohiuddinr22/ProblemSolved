@@ -2,13 +2,13 @@
 #include <iostream>
 using namespace std;
 
-bool isPalindrome(int x)
+bool isPalindrome(long x)
 {
     if (x < 0 || (x != 0 && x % 10 == 0))
     {
         return false;
     }
-    int sum = 0, num = x;
+    long sum = 0, num = x;
     while (num != 0)
     {
         sum = sum * 10 + num % 10;
@@ -19,7 +19,7 @@ bool isPalindrome(int x)
 
 int main()
 {
-    int x;
+    long x;
     cout << "Enter a number which you wanna check : ";
     cin >> x;
     if (isPalindrome(x))
