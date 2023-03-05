@@ -51,6 +51,34 @@ void roman_To_Numbers(vector<char> &R)
     cout << int_Num;
 }
 
+/*void roman_To_Numbers(string s)
+{
+    map<char, int> roman;
+    roman['I'] = 1;
+    roman['V'] = 5;
+    roman['X'] = 10;
+    roman['L'] = 50;
+    roman['C'] = 100;
+    roman['D'] = 500;
+    roman['M'] = 1000;
+
+    int int_Num = 0;
+
+    for (int i = 0; i < s.length() - 1; ++i)
+    {
+        if (roman[s[i]] < roman[s[i + 1]])
+        {
+            int_Num -= roman[s[i]];
+        }
+        else
+        {
+            int_Num += roman[s[i]];
+        }
+    }
+    int_Num += roman[s[s.length() - 1]];
+    cout << int_Num;
+}*/
+
 int main()
 {
     string roman;
