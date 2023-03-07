@@ -40,7 +40,7 @@ int FindLargest(vector<int> &array, int start, int end)
     return largestNum;
 }
 
-int MaxProfit(vector<int> &prices)
+/*int MaxProfit(vector<int> &prices)
 {
     int size = prices.size();
     if (IfDescending(prices))
@@ -51,9 +51,9 @@ int MaxProfit(vector<int> &prices)
         maxProfit.push_back(FindLargest(prices, i + 1, size) - prices[i]);
     }
     return FindLargest(maxProfit, 0, size - 1);
-}
+}*/
 
-/*int MaxProfit(vector<int> &prices)
+int MaxProfit(vector<int> &prices)
 {
     int least = INT32_MAX, maxProfit = 0, profit = 0;
     for (int i = 0; i < prices.size(); i++)
@@ -65,14 +65,11 @@ int MaxProfit(vector<int> &prices)
             maxProfit = profit;
     }
     return maxProfit;
-}*/
+}
 
 int main()
 {
-    vector<int> prices;
-    prices.push_back(1);
-    prices.push_back(2);
-
+    vector<int> prices = {5, 4, 6, 2, 7, 9, 5, 3};
     cout << MaxProfit(prices);
     return 0;
 }
