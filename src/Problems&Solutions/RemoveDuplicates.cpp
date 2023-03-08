@@ -15,7 +15,7 @@ int removeDuplicates(vector<int> &nums)
     int i = 0, j, k, size = nums.size(), count = 0;
     if (size == 1)
         return size;
-    if (size == 0)
+    if (size <= 0)
         return 0;
 
     while (i < size - 1)
