@@ -1,36 +1,45 @@
+/*
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+*/
+
 #include <iostream>
+#include <bits/stdc++.h>
 #include <vector>
 using namespace std;
 
-class Solution
+void sortByLength(vector<string> &strs)
 {
-private:
-    string sortStr(string str)
+    int n = strs.size();
+    for (int i = 1; i < n; i++)
     {
-        sort(str.begin(), str.end());
-    }
-
-public:
-    string longestCommonPrefix(vector<string> &strs)
-    {
-        int size = strs.size();
-        for (int i = 0; i < size; i++)
-            sortStr(strs[i]);
-
-        string newStr = "";
-        for (int i = 0; i < size; i++)
+        string temp = strs[i];
+        int j = i - 1;
+        while (j >= 0 && temp.length() < strs[j].length())
         {
-            for (int j = 0, k = 0; j < strs[i].size(), k < strs[i + 1].size(); j++, k++)
-            {
-                if (strs[i].at(j) == strs[i + 1].at(k))
-                    newStr += strs[i].at(i);
-                else
-                    break;
-            }
+            strs[j + 1] = strs[j];
+            j--;
         }
-        return newStr;
+        strs[j + 1] = temp;
     }
-};
+}
+
+string longestCommonPrefix(vector<string> &strs)
+{
+    sortByLength(strs);
+    string str;
+    int maxStrSize = strs[0], size = strs.size();
+    for (int i = 0; i < size; i++)
+        sort(strs[i].begin(), strs[i].end());
+    for (int i = 1; i < size; i++)
+    {
+        int j = 0;
+        while (j < strs[i].length() && strs[0][j] == strs[i][j])
+            j++;
+        maxStrSize = min(maxSize, j);
+    }
+    str = strs[0].substr(0, maxStrSize);
+}
 
 int main()
 {
