@@ -8,29 +8,9 @@ If there is no common prefix, return an empty string "".
 #include <vector>
 using namespace std;
 
-void sortByLength(vector<string> &strs)
-{
-    int n = strs.size();
-    for (int i = 1; i < n; i++)
-    {
-        string temp = strs[i];
-        int j = i - 1;
-        while (j >= 0 && temp.length() < strs[j].length())
-        {
-            strs[j + 1] = strs[j];
-            j--;
-        }
-        strs[j + 1] = temp;
-    }
-}
-
 string longestCommonPrefix(vector<string> &strs)
 {
-    sortByLength(strs);
-    string str;
     int maxStrSize = strs[0], size = strs.size();
-    for (int i = 0; i < size; i++)
-        sort(strs[i].begin(), strs[i].end());
     for (int i = 1; i < size; i++)
     {
         int j = 0;
