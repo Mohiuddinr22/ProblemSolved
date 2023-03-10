@@ -37,11 +37,9 @@ bool areNumbersAscending(string s)
                 count++;
                 i++;
             }
-            int num += convertToInt(s.substr(j, count));
-            if (check > num)
+            int num = convertToInt(s.substr(j, count));
+            if (check >= num)
                 return false;
-            else
-                continue;
 
             check = num;
         }

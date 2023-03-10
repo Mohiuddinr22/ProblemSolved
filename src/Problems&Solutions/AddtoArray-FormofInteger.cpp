@@ -5,20 +5,22 @@ For example, for num = 1321, the array form is [1,3,2,1].
 Given num, the array-form of an integer, and an integer k, return the array-form of the integer num + k.
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-vector<int> addToArrayForm(vector<int>& num, int k) {
-    long sum = 0, mult = 1, size = num.size();
-    for (int i = size - 1; i >= 0; i--) {
-        sum += num[i] * mult;
-        mult *= 10;
-    }
-    sum += k;
+vector<int> addToArrayForm(vector<int> &num, int k)
+{
     vector<int> ansArr;
-    while (sum != 0) {
-        ansArr.push_back(sum % 10);
-        sum /= 10;
+    int carry = k, i = num.size() - 1;
+    while (i >= 0 || carry > 0)
+    {
+        if (i >= 0)
+        {
+            carry += num[i];
+        }
+        ansArr.push_back(carry % 10);
+        carry /= 10;
+        i--
     }
     reverse(ansArr.begin(), ansArr.end());
     return ansArr;
