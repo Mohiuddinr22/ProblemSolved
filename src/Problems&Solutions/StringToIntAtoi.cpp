@@ -19,24 +19,69 @@ Do not ignore any characters other than the leading whitespace or the rest of th
 #include <bits/stdc++.h>
 using namespace std;
 
-int myAtoi(string s)
+/*int myAtoi(string s) // Personal solution
 {
-    int ans = 0, mult = 1, size = s.length();
-    bool isNegative = false;
-    string ansStr = "";
-    for(int i = 0; i< size; i++)
-    {
-        if(s[i]=='-')
-           isNegative = true;
-        if(isdigit(s[i]))
-           ansStr += s[i];
-        if(!isdigit(s[i]))
-           continue;
+   int ans = 0, mult = 1, size = s.length();
+   bool isNegative = false, leadingZero = true;
+   string ansStr = "";
+   for (int i = 0; i < size; i++)
+   {
+      if (s[i] == '-')
+         isNegative = true;
+      if (!isdigit(s[i]))
+         continue;
+      if (s[i] == '0' && leadingZero)
+         continue;
+      if (isdigit(s[i]) && s[i] != '0')
+         leadingZero = false;
+      if (isdigit(s[i]) && !leadingZero)
+         ansStr += s[i];
+   }
+   for (int i = ansStr.length() - 1; i >= 0; i--)
+   {
+      if (ans > INT32_MAX)
+         ans = INT32_MAX;
+      ans += (ansStr[i] - '0') * mult;
+      mult *= 10;
+   }
+   if (isNegative)
+      ans *= (-1);
+
+   return ans;
+}*/
+
+int myAtoi(string s) {
+    int ans = 0, size = s.length();
+    bool isNegative = false, start = false;
+    for (int i = 0; i < size; i++) {
+        if (s[i] == ' ' && !start) {
+            continue;
+        }
+        if ((s[i] == '-' || s[i] == '+') && !start) {
+            isNegative = (s[i] == '-');
+            start = true;
+            continue;
+        }
+        if (!isdigit(s[i]) && start) {
+            break;
+        }
+        if (isdigit(s[i])) {
+            start = true;
+            int digit = s[i] - '0';
+            if (ans > (INT_MAX - digit) / 10) {
+                return isNegative ? INT_MIN : INT_MAX;
+            }
+            ans = ans * 10 + digit;
+        }
+        else {
+            return 0;
+        }
     }
-    for(int i=ansStr.length()-1; i>=0; i--)
-    {
-        
-    }
-    
-    return ans;
+    return isNegative ? -ans : ans;
+  }
+
+int main()
+{
+   string str = "a99";
+   cout << myAtoiII(str);
 }
