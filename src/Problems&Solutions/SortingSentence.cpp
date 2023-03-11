@@ -9,48 +9,101 @@ Given a shuffled sentence s containing no more than 9 words, reconstruct and ret
 
 #include <bits/stdc++.h>
 using namespace std;
-
-bool compare(const pair<string, int> &a, const pair<string, int> &b)
+class Solution1
 {
-    return a.second < b.second;
-}
-
-string sortSentence(string s)
-{
-    vector<pair<string, int>> pairs;
-    string word;
-    int num;
-    for (size_t i = 0; i < s.length(); i++)
+private:
+    bool compare(const pair<string, int> &a, const pair<string, int> &b)
     {
-        if (isalpha(s[i]))
-            word += s[i];
-        else if (isdigit(s[i]))
+        return a.second < b.second;
+    }
+
+public:
+    string sortSentence(string s)
+    {
+        vector<pair<string, int>> pairs;
+        string word;
+        int num;
+        for (size_t i = 0; i < s.length(); i++)
         {
-            num = s[i] - '0';
-            while (isdigit(s[i + 1]) && i + 1 < s.length())
+            if (isalpha(s[i]))
+                word += s[i];
+            else if (isdigit(s[i]))
             {
-                num = num * 10 + (s[i + 1] - '0');
-                i++;
+                num = s[i] - '0';
+                while (isdigit(s[i + 1]) && i + 1 < s.length())
+                {
+                    num = num * 10 + (s[i + 1] - '0');
+                    i++;
+                }
+                pairs.push_back({word, num});
+                word.clear();
             }
-            pairs.push_back({word, num});
-            word.clear();
         }
-    }
-    sort(pairs.begin(), pairs.end(), compare);
-    string ans = "";
-    for (size_t i = 0; i < pairs.size(); i++)
-    {
-        ans += pairs[i].first;
-        if (i != pairs.size() - 1)
+        sort(pairs.begin(), pairs.end(), compare);
+        string ans = "";
+        for (size_t i = 0; i < pairs.size(); i++)
         {
-            ans += ' ';
+            ans += pairs[i].first;
+            if (i != pairs.size() - 1)
+            {
+                ans += ' ';
+            }
+        }
+        return ans;
+    }
+};
+class Solution2
+{
+private:
+    void sortByNum(vector<pair<string, int>> &pairs)
+    {
+        int i, j, k;
+        for (i = 0; i < pairs.size() - 1; i++)
+        {
+            k = i;
+            for (j = i + 1; j < pairs.size(); j++)
+            {
+                if (pairs[j].second < pairs[k].second)
+                {
+                    k = j;
+                }
+            }
+            if (i != k)
+                swap(pairs[i], pairs[k]);
         }
     }
-    return ans;
-}
 
-int main()
-{
-    string s = "Hey1 just5 there2 ass9 girl3 hard11 I4 wanna6 fuck7 your8 so10";
-    cout << sortSentence(s);
-}
+public:
+    string sortSentence(string s)
+    {
+        vector<pair<string, int>> pairs;
+        string word;
+        int num;
+        for (size_t i = 0; i < s.length(); i++)
+        {
+            if (isalpha(s[i]))
+                word += s[i];
+            else if (isdigit(s[i]))
+            {
+                num = s[i] - '0';
+                while (isdigit(s[i + 1]) && i + 1 < s.length())
+                {
+                    num = num * 10 + (s[i + 1] - '0');
+                }
+                pairs.push_back({word, num});
+                word.clear();
+            }
+        }
+        sortByNum(pairs);
+        string ans = "";
+        for (size_t i = 0; i < pairs.size(); i++)
+        {
+            ans += pairs[i].first;
+            if (i != pairs.size() - 1)
+                ans += ' ';
+        }
+        return ans;
+    }
+};
+
+int main() {}
