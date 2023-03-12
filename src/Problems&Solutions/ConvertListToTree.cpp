@@ -24,7 +24,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-TreeNode *binarySearchTree(vector<int> arr, int low, int high)
+TreeNode *binarySearchTree(vector<int> &arr, int low, int high)
 {
     if (low <= high)
     {
