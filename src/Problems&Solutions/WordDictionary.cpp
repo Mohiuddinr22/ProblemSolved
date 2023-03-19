@@ -11,7 +11,41 @@ bool search(word) Returns true if there is any string in the data structure that
 #include <bits/stdc++.h>
 using namespace std;
 
-class TrieNode
+class WordDictionary
+{
+private:
+    set<string> str;
+
+public:
+    WordDictionary() {}
+    void addWord(string word)
+    {
+        str.insert(word);
+    }
+    bool search(string word)
+    {
+        string w = "";
+        for (char c : word)
+            if (c != '.')
+                w += c;
+        bool exists;
+        for (auto it = str.begin(); it != str.end(); it++)
+        {
+            exists = false;
+            int i = 0;
+            while (i < w.length())
+            {
+                for (char c : *it)
+                    if (c == w[i])
+                        exists = true;
+                i++;
+            }
+        }
+        return exists;
+    }
+};
+
+/*class TrieNode
 {
 public:
     bool isOver;
@@ -68,7 +102,7 @@ public:
     }
 };
 
-/*class TrieNode {
+class TrieNode {
 public:
     bool isEnd;
     unordered_map<char, TrieNode*> map;

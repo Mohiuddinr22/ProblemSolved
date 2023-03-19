@@ -30,7 +30,7 @@ trie.search("app");     // return True
 #include <bits/stdc++.h>
 using namespace std;
 
-class Trie
+/*class Trie
 {
     set<string> str;
 
@@ -47,10 +47,24 @@ public:
         if (it == str.end())
             return false;
         for (size_t i = 0; i < prefix.size(); i++)
-            if (prefix[i] != it[i])
+            if (prefix[i] != (*it)[i])
                 return false;
         return true;
     }
-};
+};*/
 
-int main() {}
+int main()
+{
+    set<string> str;
+    str.insert("Hello");
+    str.insert("Hi");
+    str.insert("Hey");
+    str.insert("Hola");
+    str.insert("Whussup");
+    str.insert("Yo");
+
+    for (auto it = str.begin(); it != str.end(); it++)
+    {
+        cout << *it << endl;
+    }
+}
