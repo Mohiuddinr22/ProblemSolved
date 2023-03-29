@@ -30,25 +30,30 @@ using namespace std;
 
 vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
 {
-    vector<int> courses(numCourses + 1);
-    for (int i = 0; i <= courses.size(); i++)
-        courses[i] = i;
-
-    for (int i = 0; i < prerequisites.size(); i++)
-    {
-        int j = 0;
-        while (j < courses.size())
-        {
-            int k = 0, l = 0;
-            if (courses[j] == prerequisites[i][l + 1])
-                k = j;
-            if (courses[j] == prerequisites[i][l] && j < k)
-                swap(courses[k], courses[j]);
-            j++;
-        }
-    }
-    return courses;
+    
 }
+
+// vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
+// {
+//     vector<int> courses(numCourses + 1);
+//     for (int i = 0; i <= courses.size(); i++)
+//         courses[i] = i;
+
+//     for (int i = 0; i < prerequisites.size(); i++)
+//     {
+//         int j = 0;
+//         while (j < courses.size())
+//         {
+//             int k = 0, l = 0;
+//             if (courses[j] == prerequisites[i][l + 1])
+//                 k = j;
+//             if (courses[j] == prerequisites[i][l] && j < k)
+//                 swap(courses[k], courses[j]);
+//             j++;
+//         }
+//     }
+//     return courses;
+// }
 
 int main()
 {
