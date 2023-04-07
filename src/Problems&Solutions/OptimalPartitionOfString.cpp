@@ -20,3 +20,7 @@ Output: 6
 Explanation:
 The only valid partition is ("s","s","s","s","s","s").
 */
+
+#include<bits/stdc++.h>
+using namespace std;
+
