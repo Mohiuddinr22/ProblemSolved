@@ -35,20 +35,19 @@ using namespace std;
 
 vector<int> productExceptSelf(vector<int> &nums)
 {
-    int n = nums.size();
-    vector<int> ans;
+    int n = nums.size(), prefix = 1, postfix = 1;
+    vector<int> res(n, 1);
     for (int i = 0; i < n; i++)
     {
-        int product = 1;
-        for (int j = 0; j < n; j++)
-        {
-            if (i == j)
-                continue;
-            product *= nums[j];
-        }
-        ans.push_back(product);
+        res[i] = prefix;
+        prefix *= nums[i];
     }
-    return ans;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        res[i] *= postfix;
+        postfix *= nums[i];
+    }
+    return res;
 }
 
 // vector<int> productExceptSelf(vector<int> &nums)
